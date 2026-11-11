@@ -115,8 +115,8 @@
 .toon-main-intro .verify-story-inner{inset:42px 0 113px;overflow:hidden}
 .toon-visual{position:absolute;inset:0;isolation:isolate;filter:drop-shadow(0 20px 26px rgba(0,12,32,.17));}
 .toon-illustration{position:absolute;top:50%;left:50%;height:119%;width:115%;max-width:690px;transform:translate(-50%,-52%) rotate(-2deg);overflow:visible}
-.toon-phone-rig{transform-box:view-box;transform-origin:406px 510px;transform:rotate(28deg) translate(5px,11px);transition:transform 1.12s cubic-bezier(.19,.84,.34,1);will-change:transform}
-.toon-main-intro[data-scene="capture"] .toon-phone-rig{transform:rotate(29deg) translate(6px,15px)}
+.toon-phone-rig{transform-box:view-box;transform-origin:406px 510px;transform:rotate(16deg) translate(0,12px);transition:transform 1.12s cubic-bezier(.19,.84,.34,1);will-change:transform}
+.toon-main-intro[data-scene="capture"] .toon-phone-rig{transform:rotate(16deg) translate(0,12px)}
 .toon-main-intro[data-scene="scan"] .toon-phone-rig,.toon-main-intro[data-scene="success"] .toon-phone-rig{transform:rotate(-1deg) translate(0,0)}
 .toon-face-frame{opacity:0;transform:scale(.965);transform-origin:329px 279px;transition:opacity .5s,transform .75s cubic-bezier(.2,.7,.2,1)}
 .toon-main-intro[data-scene="scan"] .toon-face-frame{opacity:1;transform:scale(1);transition-delay:.67s}
