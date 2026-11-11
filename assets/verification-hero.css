@@ -73,3 +73,7 @@
 @media(prefers-reduced-motion:reduce){.verify-story *,.verify-story *:before,.verify-story *:after{animation:none!important;transition:none!important}.verify-story .hero-phone-rig{transform:none}.verify-story .hero-eyes{transform:none}.verify-story .hero-happy-mouth{opacity:1}.verify-story .hero-neutral-mouth{opacity:0}.verify-story .hero-phone-success{opacity:1;transform:scale(1)}.verify-story .hero-success-burst{opacity:1;transform:scale(1)}.verify-story .story-success-card{opacity:1;transform:none}.verify-story .verification-chip{opacity:1;transform:none}.verify-story .story-stage-progress span{width:100%}.verify-story .story-playback{display:none}}
 
 .verify-story .visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+/* Final visual QA: keep the success card readable and let the phone carry the tick. */
+.story-success-card strong{color:#173856}
+.story-success-card small{color:#58758E}
+.hero-success-burst>path{opacity:0}
