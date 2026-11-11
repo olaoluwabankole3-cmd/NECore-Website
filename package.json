@@ -1,0 +1,8 @@
+{
+  "name": "necore-public-website",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NECore public-facing marketing website, early access edition",
+  "scripts": {"build":"node -e \"console.log('NECore static site: no build required')\"", "start":"npx serve . -l 3000"},
+  "engines": {"node": ">=20"}
+}
