@@ -4,7 +4,7 @@
   if(!story)return;
   const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
   const stages=[
-    {key:'capture',number:'01 / 03',tag:'CAPTURE',title:'Ready for a simple identity check',subtitle:'Bring your phone up, frame your face, and begin.',duration:2850},
+    {key:'capture',number:'01 / 03',tag:'CAPTURE',title:'Ready for a simple identity check',subtitle:'Hold your phone up to begin a secure verification.',duration:2850},
     {key:'scan',number:'02 / 03',tag:'VERIFYING',title:'A smarter check, in motion',subtitle:'Face, liveness, and source signals come together.',duration:3700},
     {key:'success',number:'03 / 03',tag:'COMPLETE',title:'Identity verified',subtitle:'Illustrative result. The right evidence, clearly presented.',duration:3200}
   ];
