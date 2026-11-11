@@ -109,3 +109,25 @@
  .portrait-scan-tracer{animation:none!important;opacity:0!important}
  .portrait-validation-seal{opacity:1!important;transform:none!important;transition:none!important}
 }
+
+/* V5 · Art-directed cartoon hero. Fixed anatomical geometry, independently rigged forearm. */
+.verify-story.toon-main-intro{background:radial-gradient(ellipse at 54% 34%,rgba(56,112,170,.34) 0,transparent 57%),linear-gradient(145deg,#143B65,#0A2441 71%,#143D67);}
+.toon-main-intro .verify-story-inner{inset:42px 0 113px;overflow:hidden}
+.toon-visual{position:absolute;inset:0;isolation:isolate;filter:drop-shadow(0 20px 26px rgba(0,12,32,.17));}
+.toon-illustration{position:absolute;top:50%;left:50%;height:119%;width:115%;max-width:690px;transform:translate(-50%,-52%) rotate(-2deg);overflow:visible}
+.toon-phone-rig{transform-box:view-box;transform-origin:406px 510px;transform:rotate(28deg) translate(5px,11px);transition:transform 1.12s cubic-bezier(.19,.84,.34,1);will-change:transform}
+.toon-main-intro[data-scene="capture"] .toon-phone-rig{transform:rotate(29deg) translate(6px,15px)}
+.toon-main-intro[data-scene="scan"] .toon-phone-rig,.toon-main-intro[data-scene="success"] .toon-phone-rig{transform:rotate(-1deg) translate(0,0)}
+.toon-face-frame{opacity:0;transform:scale(.965);transform-origin:329px 279px;transition:opacity .5s,transform .75s cubic-bezier(.2,.7,.2,1)}
+.toon-main-intro[data-scene="scan"] .toon-face-frame{opacity:1;transform:scale(1);transition-delay:.67s}
+.toon-main-intro[data-scene="success"] .toon-face-frame{opacity:.22;transform:scale(1)}
+.toon-scan-beam{transform-origin:329px 279px;filter:drop-shadow(0 0 8px #4EBCFF)}
+.toon-main-intro[data-scene="scan"] .toon-scan-beam{animation:necoreToonScan 1.7s ease-in-out .7s infinite alternate}
+.toon-verified-mark{opacity:0;transform-origin:403px 179px;transform:scale(.48);transition:opacity .5s ease,transform .65s cubic-bezier(.12,.85,.2,1.1)}
+.toon-main-intro[data-scene="success"] .toon-verified-mark{opacity:1;transform:scale(1)}
+.toon-main-intro .story-success-card{bottom:20%;right:9px}
+.toon-main-intro[data-scene="scan"] .verification-chip-right{transition-delay:1.5s}
+.toon-visual:after{content:"";position:absolute;inset:auto 5% 0;height:60px;background:linear-gradient(180deg,transparent,#092441);pointer-events:none}
+@keyframes necoreToonScan{from{transform:translateY(-33px)}to{transform:translateY(65px)}}
+@media(max-width:620px){.toon-main-intro .verify-story-inner{inset:29px -15px 112px}.toon-illustration{width:130%;height:115%;transform:translate(-50%,-53%) rotate(-2deg)}.toon-main-intro .verification-chip-right{right:22px;top:16%}.toon-main-intro .story-success-card{right:17px;bottom:22%}}
+@media(prefers-reduced-motion:reduce){.toon-phone-rig{transition:none!important;transform:none!important}.toon-face-frame{transition:none!important;opacity:.18!important}.toon-scan-beam{animation:none!important}.toon-verified-mark{opacity:1!important;transform:scale(1)!important;transition:none!important}}
