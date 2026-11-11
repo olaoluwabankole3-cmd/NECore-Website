@@ -131,3 +131,28 @@
 @keyframes necoreToonScan{from{transform:translateY(-33px)}to{transform:translateY(65px)}}
 @media(max-width:620px){.toon-main-intro .verify-story-inner{inset:29px -15px 112px}.toon-illustration{width:130%;height:115%;transform:translate(-50%,-53%) rotate(-2deg)}.toon-main-intro .verification-chip-right{right:22px;top:16%}.toon-main-intro .story-success-card{right:17px;bottom:22%}}
 @media(prefers-reduced-motion:reduce){.toon-phone-rig{transition:none!important;transform:none!important}.toon-face-frame{transition:none!important;opacity:.18!important}.toon-scan-beam{animation:none!important}.toon-verified-mark{opacity:1!important;transform:scale(1)!important;transition:none!important}}
+
+/* V6 / Phone-raise intro: single coherent painted figure, moving handset-and-arm layer. */
+.toon-v6-intro{background:radial-gradient(ellipse at 50% 18%,#2465a3 0%,#0d345c 45%,#071c38 100%);isolation:isolate}
+.toon-v6-intro .verify-story-inner{inset:34px -2px 104px;overflow:hidden}
+.toon-v6-intro .toon-visual{inset:0;filter:none;overflow:hidden}
+.toon-v6-intro .toon-stage-v6{position:absolute;width:100%;height:100%;inset:0;overflow:hidden;border-radius:16px;box-shadow:inset 0 0 42px rgba(3,17,34,.3)}
+.toon-v6-intro .toon-v6-base,.toon-v6-intro .toon-v6-animated-arm{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 46%;max-width:none;pointer-events:none}
+.toon-v6-intro .toon-v6-base{z-index:1;filter:saturate(1.025)}
+.toon-v6-intro .toon-v6-animated-arm{z-index:3;transform-origin:74% 93%;transform:translate(0,0) rotate(0);transition:transform 1.45s cubic-bezier(.18,.80,.23,1);will-change:transform}
+.toon-v6-intro[data-scene="scan"] .toon-v6-animated-arm,.toon-v6-intro[data-scene="success"] .toon-v6-animated-arm{transform:translate(-5.1%,-11.7%) rotate(-7deg)}
+.toon-v6-intro .toon-v6-scan-frame{position:absolute;z-index:4;left:29%;top:16%;height:43%;width:32%;border:3px solid rgba(144,225,255,.9);border-radius:22px;box-shadow:0 0 24px rgba(64,177,251,.43),inset 0 0 22px rgba(64,177,251,.15);opacity:0;transform:scale(.965);transition:opacity .52s ease,transform .52s ease;pointer-events:none;clip-path:polygon(0 0,23% 0,23% 5%,77% 5%,77% 0,100% 0,100% 28%,95% 28%,95% 72%,100% 72%,100% 100%,77% 100%,77% 95%,23% 95%,23% 100%,0 100%,0 72%,5% 72%,5% 28%,0 28%)}
+.toon-v6-intro[data-scene="scan"] .toon-v6-scan-frame{opacity:1;transform:scale(1);transition-delay:.67s}
+.toon-v6-intro[data-scene="success"] .toon-v6-scan-frame{opacity:.55;transform:scale(1);border-color:#77ebc9;box-shadow:0 0 25px rgba(63,228,185,.4)}
+.toon-v6-scan-line{position:absolute;top:8%;left:1%;right:1%;height:3px;background:linear-gradient(90deg,transparent,#6cd1ff,#f1ffff,transparent);box-shadow:0 0 14px #54d7ff;opacity:0}
+.toon-v6-intro[data-scene="scan"] .toon-v6-scan-line{opacity:1;animation:v6ScanLine 1.9s ease-in-out .8s infinite alternate}
+.toon-v6-completion{position:absolute;z-index:5;top:23%;right:3%;display:flex;gap:8px;align-items:center;padding:10px 12px;border-radius:100px;border:1px solid rgba(111,239,194,.82);background:rgba(5,47,55,.87);box-shadow:0 0 24px rgba(67,232,176,.35);color:#e7fff5;font-weight:800;letter-spacing:.07em;font-size:10px;opacity:0;transform:translateY(14px) scale(.95);transition:opacity .5s,transform .65s cubic-bezier(.16,.8,.2,1);pointer-events:none}
+.toon-v6-intro[data-scene="success"] .toon-v6-completion{opacity:1;transform:translateY(0) scale(1)}
+.toon-v6-icon{width:24px;height:24px;display:grid;place-items:center;background:#147d68;border-radius:50%;font-size:16px}
+.toon-v6-bottom-fade{position:absolute;z-index:6;left:0;right:0;bottom:0;height:12%;background:linear-gradient(180deg,transparent,rgba(7,28,56,.65));pointer-events:none}
+.toon-v6-intro .toon-visual:after{display:none}
+.toon-v6-intro .verification-chip[hidden]{display:none}
+.toon-v6-intro .story-success-card{right:17px;bottom:21%;z-index:9}
+@keyframes v6ScanLine{from{transform:translateY(0)}to{transform:translateY(115px)}}
+@media (max-width:620px){.toon-v6-intro .verify-story-inner{inset:23px 0px 112px}.toon-v6-intro .toon-v6-base,.toon-v6-intro .toon-v6-animated-arm{object-position:49% center}.toon-v6-intro .toon-v6-scan-frame{left:29%;top:17%;width:33%;height:39%;border-radius:14px}.toon-v6-completion{font-size:7px;padding:6px 9px;top:24%;right:2%}.toon-v6-icon{width:20px;height:20px;font-size:12px}.toon-v6-intro .story-success-card{right:13px;bottom:25%}}
+@media (prefers-reduced-motion: reduce){.toon-v6-intro .toon-v6-animated-arm{transition:none!important;transform:translate(-5.1%,-11.7%) rotate(-7deg)!important}.toon-v6-intro .toon-v6-scan-frame{transition:none!important;opacity:0!important}.toon-v6-intro .toon-v6-completion{transition:none!important;opacity:1!important;transform:none!important}.toon-v6-intro .toon-v6-scan-line{animation:none!important;opacity:0!important}}
