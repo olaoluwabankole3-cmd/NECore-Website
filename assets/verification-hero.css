@@ -77,3 +77,82 @@
 .story-success-card strong{color:#173856}
 .story-success-card small{color:#58758E}
 .hero-success-burst>path{opacity:0}
+
+/* V4: premium portrait illustration; no facial or body rigging. */
+.verify-story{background:linear-gradient(145deg,#123b69 0%,#092540 58%,#103961 100%)}
+.verify-story-inner{inset:43px 5px 116px}
+.portrait-visual{position:absolute;inset:0 6px 0 6px;overflow:hidden;border-radius:22px;isolation:isolate;background:#092442;}
+.portrait-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 37%;transform:none!important;animation:none!important;filter:saturate(.96) contrast(1.03)}
+.portrait-visual:before{content:"";position:absolute;z-index:2;inset:0;background:linear-gradient(90deg,rgba(6,33,63,.24) 0%,transparent 25%,transparent 75%,rgba(5,30,54,.07) 100%);pointer-events:none}
+.portrait-visual:after{content:"";position:absolute;z-index:2;inset:0;background:linear-gradient(180deg,transparent 57%,rgba(5,28,50,.8) 100%);pointer-events:none}
+.portrait-scan-tracer{position:absolute;z-index:3;left:33%;width:43%;height:2px;top:21%;background:linear-gradient(90deg,transparent,#a1e1ff,#e4f9ff,transparent);box-shadow:0 0 16px #3eb7ff,0 0 30px rgba(40,166,247,.5);opacity:0;transform:translateY(0);pointer-events:none}
+.verify-story[data-scene="scan"] .portrait-scan-tracer{opacity:.96;animation:portraitScan 2.75s ease-in-out infinite alternate}
+.portrait-validation-seal{position:absolute;z-index:4;left:41%;top:19%;display:flex;align-items:center;gap:8px;background:rgba(6,41,61,.74);border:1px solid rgba(145,246,213,.75);border-radius:99px;padding:7px 12px;font-weight:700;font-size:12px;color:#dffdee;opacity:0;transform:translateY(12px);transition:opacity .65s ease,transform .65s ease;box-shadow:0 12px 44px rgba(17,151,110,.25)}
+.portrait-validation-seal span:first-child{display:grid;place-items:center;width:24px;height:24px;background:#1b976e;border-radius:50%;color:white}
+.verify-story[data-scene="success"] .portrait-validation-seal{opacity:1;transform:translateY(0)}
+.verification-chip-left{top:47%;left:9px}
+.verification-chip-right{top:23%;right:8px}
+.story-success-card{bottom:20%;right:8px;max-width:245px}
+.verify-story .hero-scan-rings,.verify-story .hero-phone-rig{display:none!important}
+@keyframes portraitScan{from{transform:translateY(0)}to{transform:translateY(177px)}}
+@media (max-width:620px){
+  .verify-story-inner{inset:36px 5px 109px}
+  .portrait-visual{inset:0 5px;border-radius:16px}
+  .portrait-image{object-position:center 35%}
+  .portrait-validation-seal{top:18%;left:38%;font-size:10px;padding:5px 8px}
+  .portrait-validation-seal span:first-child{height:19px;width:19px}
+  .verification-chip-left{top:49%;left:7px}
+  .verification-chip-right{top:18%;right:7px}
+  .story-success-card{bottom:24%;right:7px}
+}
+@media (prefers-reduced-motion:reduce){
+ .portrait-scan-tracer{animation:none!important;opacity:0!important}
+ .portrait-validation-seal{opacity:1!important;transform:none!important;transition:none!important}
+}
+
+/* V5 · Art-directed cartoon hero. Fixed anatomical geometry, independently rigged forearm. */
+.verify-story.toon-main-intro{background:radial-gradient(ellipse at 54% 34%,rgba(56,112,170,.34) 0,transparent 57%),linear-gradient(145deg,#143B65,#0A2441 71%,#143D67);}
+.toon-main-intro .verify-story-inner{inset:42px 0 113px;overflow:hidden}
+.toon-visual{position:absolute;inset:0;isolation:isolate;filter:drop-shadow(0 20px 26px rgba(0,12,32,.17));}
+.toon-illustration{position:absolute;top:50%;left:50%;height:119%;width:115%;max-width:690px;transform:translate(-50%,-52%) rotate(-2deg);overflow:visible}
+.toon-phone-rig{transform-box:view-box;transform-origin:406px 510px;transform:rotate(16deg) translate(0,12px);transition:transform 1.12s cubic-bezier(.19,.84,.34,1);will-change:transform}
+.toon-main-intro[data-scene="capture"] .toon-phone-rig{transform:rotate(16deg) translate(0,12px)}
+.toon-main-intro[data-scene="scan"] .toon-phone-rig,.toon-main-intro[data-scene="success"] .toon-phone-rig{transform:rotate(-1deg) translate(0,0)}
+.toon-face-frame{opacity:0;transform:scale(.965);transform-origin:329px 279px;transition:opacity .5s,transform .75s cubic-bezier(.2,.7,.2,1)}
+.toon-main-intro[data-scene="scan"] .toon-face-frame{opacity:1;transform:scale(1);transition-delay:.67s}
+.toon-main-intro[data-scene="success"] .toon-face-frame{opacity:.22;transform:scale(1)}
+.toon-scan-beam{transform-origin:329px 279px;filter:drop-shadow(0 0 8px #4EBCFF)}
+.toon-main-intro[data-scene="scan"] .toon-scan-beam{animation:necoreToonScan 1.7s ease-in-out .7s infinite alternate}
+.toon-verified-mark{opacity:0;transform-origin:403px 179px;transform:scale(.48);transition:opacity .5s ease,transform .65s cubic-bezier(.12,.85,.2,1.1)}
+.toon-main-intro[data-scene="success"] .toon-verified-mark{opacity:1;transform:scale(1)}
+.toon-main-intro .story-success-card{bottom:20%;right:9px}
+.toon-main-intro[data-scene="scan"] .verification-chip-right{transition-delay:1.5s}
+.toon-visual:after{content:"";position:absolute;inset:auto 5% 0;height:60px;background:linear-gradient(180deg,transparent,#092441);pointer-events:none}
+@keyframes necoreToonScan{from{transform:translateY(-33px)}to{transform:translateY(65px)}}
+@media(max-width:620px){.toon-main-intro .verify-story-inner{inset:29px -15px 112px}.toon-illustration{width:130%;height:115%;transform:translate(-50%,-53%) rotate(-2deg)}.toon-main-intro .verification-chip-right{right:22px;top:16%}.toon-main-intro .story-success-card{right:17px;bottom:22%}}
+@media(prefers-reduced-motion:reduce){.toon-phone-rig{transition:none!important;transform:none!important}.toon-face-frame{transition:none!important;opacity:.18!important}.toon-scan-beam{animation:none!important}.toon-verified-mark{opacity:1!important;transform:scale(1)!important;transition:none!important}}
+
+/* V6 / Phone-raise intro: single coherent painted figure, moving handset-and-arm layer. */
+.toon-v6-intro{background:radial-gradient(ellipse at 50% 18%,#2465a3 0%,#0d345c 45%,#071c38 100%);isolation:isolate}
+.toon-v6-intro .verify-story-inner{inset:34px -2px 104px;overflow:hidden}
+.toon-v6-intro .toon-visual{inset:0;filter:none;overflow:hidden}
+.toon-v6-intro .toon-stage-v6{position:absolute;width:100%;height:100%;inset:0;overflow:hidden;border-radius:16px;box-shadow:inset 0 0 42px rgba(3,17,34,.3)}
+.toon-v6-intro .toon-v6-base,.toon-v6-intro .toon-v6-animated-arm{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 46%;max-width:none;pointer-events:none}
+.toon-v6-intro .toon-v6-base{z-index:1;filter:saturate(1.025)}
+.toon-v6-intro .toon-v6-animated-arm{z-index:3;transform-origin:74% 93%;transform:translate(0,0) rotate(0);transition:transform 1.45s cubic-bezier(.18,.80,.23,1);will-change:transform}
+.toon-v6-intro[data-scene="scan"] .toon-v6-animated-arm,.toon-v6-intro[data-scene="success"] .toon-v6-animated-arm{transform:translate(-5.1%,-11.7%) rotate(-7deg)}
+.toon-v6-intro .toon-v6-scan-frame{position:absolute;z-index:4;left:29%;top:16%;height:43%;width:32%;border:3px solid rgba(144,225,255,.9);border-radius:22px;box-shadow:0 0 24px rgba(64,177,251,.43),inset 0 0 22px rgba(64,177,251,.15);opacity:0;transform:scale(.965);transition:opacity .52s ease,transform .52s ease;pointer-events:none;clip-path:polygon(0 0,23% 0,23% 5%,77% 5%,77% 0,100% 0,100% 28%,95% 28%,95% 72%,100% 72%,100% 100%,77% 100%,77% 95%,23% 95%,23% 100%,0 100%,0 72%,5% 72%,5% 28%,0 28%)}
+.toon-v6-intro[data-scene="scan"] .toon-v6-scan-frame{opacity:1;transform:scale(1);transition-delay:.67s}
+.toon-v6-intro[data-scene="success"] .toon-v6-scan-frame{opacity:.55;transform:scale(1);border-color:#77ebc9;box-shadow:0 0 25px rgba(63,228,185,.4)}
+.toon-v6-scan-line{position:absolute;top:8%;left:1%;right:1%;height:3px;background:linear-gradient(90deg,transparent,#6cd1ff,#f1ffff,transparent);box-shadow:0 0 14px #54d7ff;opacity:0}
+.toon-v6-intro[data-scene="scan"] .toon-v6-scan-line{opacity:1;animation:v6ScanLine 1.9s ease-in-out .8s infinite alternate}
+.toon-v6-completion{position:absolute;z-index:5;top:23%;right:3%;display:flex;gap:8px;align-items:center;padding:10px 12px;border-radius:100px;border:1px solid rgba(111,239,194,.82);background:rgba(5,47,55,.87);box-shadow:0 0 24px rgba(67,232,176,.35);color:#e7fff5;font-weight:800;letter-spacing:.07em;font-size:10px;opacity:0;transform:translateY(14px) scale(.95);transition:opacity .5s,transform .65s cubic-bezier(.16,.8,.2,1);pointer-events:none}
+.toon-v6-intro[data-scene="success"] .toon-v6-completion{opacity:1;transform:translateY(0) scale(1)}
+.toon-v6-icon{width:24px;height:24px;display:grid;place-items:center;background:#147d68;border-radius:50%;font-size:16px}
+.toon-v6-bottom-fade{position:absolute;z-index:6;left:0;right:0;bottom:0;height:12%;background:linear-gradient(180deg,transparent,rgba(7,28,56,.65));pointer-events:none}
+.toon-v6-intro .toon-visual:after{display:none}
+.toon-v6-intro .verification-chip[hidden]{display:none}
+.toon-v6-intro .story-success-card{right:17px;bottom:21%;z-index:9}
+@keyframes v6ScanLine{from{transform:translateY(0)}to{transform:translateY(115px)}}
+@media (max-width:620px){.toon-v6-intro .verify-story-inner{inset:23px 0px 112px}.toon-v6-intro .toon-v6-base,.toon-v6-intro .toon-v6-animated-arm{object-position:49% center}.toon-v6-intro .toon-v6-scan-frame{left:29%;top:17%;width:33%;height:39%;border-radius:14px}.toon-v6-completion{font-size:7px;padding:6px 9px;top:24%;right:2%}.toon-v6-icon{width:20px;height:20px;font-size:12px}.toon-v6-intro .story-success-card{right:13px;bottom:25%}}
+@media (prefers-reduced-motion: reduce){.toon-v6-intro .toon-v6-animated-arm{transition:none!important;transform:translate(-5.1%,-11.7%) rotate(-7deg)!important}.toon-v6-intro .toon-v6-scan-frame{transition:none!important;opacity:0!important}.toon-v6-intro .toon-v6-completion{transition:none!important;opacity:1!important;transform:none!important}.toon-v6-intro .toon-v6-scan-line{animation:none!important;opacity:0!important}}
