@@ -1,0 +1,169 @@
+/* NECore borderless homepage hero — scoped to the approved V6 character intro.
+   Emergency Intro intentionally keeps its original visual treatment. */
+@media (min-width: 901px) {
+  .hero-human .hero-human-inner {
+    grid-template-columns: minmax(0,.93fr) minmax(0,1.07fr);
+    gap: clamp(10px, 2vw, 32px);
+    min-height: 735px;
+    padding-block: 56px 72px;
+  }
+}
+.hero-human .verify-story.toon-v6-intro {
+  width: 100%;
+  max-width: 720px;
+  height: 640px;
+  min-height: 640px;
+  margin-right: -34px;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  isolation: isolate;
+}
+.hero-human .verify-story.toon-v6-intro::before,
+.hero-human .verify-story.toon-v6-intro::after { display: none !important; }
+.hero-human .toon-v6-intro .verify-story-bg { display: none; }
+.hero-human .toon-v6-intro .verify-story-eyebrow { display: none; }
+.hero-human .toon-v6-intro .verify-story-inner {
+  inset: 0 -23px 58px -25px;
+  overflow: visible !important;
+}
+.hero-human .toon-v6-intro .toon-visual,
+.hero-human .toon-v6-intro .toon-stage-v6 {
+  inset: 0;
+  overflow: visible !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+/* Ambient lighting is a soft part of the hero, not another card. */
+.hero-human .toon-v6-intro .toon-stage-v6::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 10% -3% 5%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse,rgba(62,133,209,.27) 0%,rgba(40,106,170,.12) 39%,transparent 72%);
+  filter: blur(26px);
+  pointer-events: none;
+}
+.hero-human .toon-v6-intro .toon-v6-base,
+.hero-human .toon-v6-intro .toon-v6-animated-arm {
+  width: 108%;
+  height: 108%;
+  left: -3%;
+  top: 0;
+  object-fit: contain;
+  object-position: center bottom;
+  pointer-events: none;
+}
+.hero-human .toon-v6-intro .toon-v6-bottom-fade { display: none; }
+/* A single contextual label, tucked away from the character's face. */
+.hero-human .toon-v6-intro .toon-v6-completion {
+  top: 25%;
+  right: -1%;
+  padding: 9px 12px;
+  font-size: 10px;
+}
+.hero-human .toon-v6-intro .story-success-card {
+  bottom: 25%;
+  right: -6px;
+  border: 1px solid rgba(161,237,211,.6);
+  box-shadow: 0 13px 38px rgba(0,18,36,.21);
+}
+/* Floating progress and pause: no bordered dashboard panel. */
+.hero-human .toon-v6-intro .verify-story-footer {
+  left: 6%;
+  right: 5%;
+  bottom: 17px;
+  padding: 10px 0 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  border-radius: 0;
+  text-shadow: 0 1px 14px rgba(1,14,36,.75);
+}
+.hero-human .toon-v6-intro .story-stage-top {font-size: 9px; letter-spacing: .12em;}
+.hero-human .toon-v6-intro .story-stage-name {font-size: 15px; min-height: 19px; margin-top: 6px;}
+.hero-human .toon-v6-intro .story-stage-sub {font-size: 10px; min-height: 13px; margin-top: 3px;}
+.hero-human .toon-v6-intro .story-stage-progress {margin-top: 9px;}
+.hero-human .toon-v6-intro .story-stage-nav {margin-top: 6px;}
+.hero-human .toon-v6-intro .story-playback {font-size: 11px; min-height: 30px;}
+/* Preserve fixed illustration geometry across scan and success states. */
+.hero-human .toon-v6-intro .toon-v6-scan-frame {left: 30%;top: 19%;height: 41%;width: 31%;}
+@media (max-width: 900px) {
+  .hero-human .verify-story.toon-v6-intro {
+    width: min(100%, 700px);
+    height: 580px;
+    min-height: 580px;
+    margin-inline: auto;
+  }
+  .hero-human .toon-v6-intro .verify-story-inner {inset: 0 -12px 56px;}
+}
+@media (max-width: 620px) {
+  .hero-human .hero-human-inner {gap: 3px; padding-bottom: 68px;}
+  .hero-human .verify-story.toon-v6-intro {
+    height: 450px;
+    min-height: 450px;
+    width: calc(100% + 18px);
+    margin-left: -9px;
+    margin-right: -9px;
+  }
+  .hero-human .toon-v6-intro .verify-story-inner {inset: 0 -16px 68px;}
+  .hero-human .toon-v6-intro .toon-v6-base,
+  .hero-human .toon-v6-intro .toon-v6-animated-arm {
+    width: 114%;
+    height: 114%;
+    left: -7%;
+    top: -5%;
+    object-position: center bottom;
+  }
+  .hero-human .toon-v6-intro .toon-v6-scan-frame {left: 29%; top: 17%; width: 33%; height: 41%;}
+  .hero-human .toon-v6-intro .toon-v6-completion {right: 0; top: 20%; font-size: 8px;}
+  .hero-human .toon-v6-intro .story-success-card {right: 2%; bottom: 26%;}
+  .hero-human .toon-v6-intro .verify-story-footer {left: 4%; right: 4%; bottom: 8px; padding-top: 0;}
+  .hero-human .toon-v6-intro .story-stage-name {font-size: 13px;}
+  .hero-human .toon-v6-intro .story-stage-sub {font-size: 9px;}
+}
+/* Blend the illustration into the hero, rather than showing its image edges. */
+@media (min-width: 621px) {
+  .hero-human .toon-v6-intro .toon-v6-base,
+  .hero-human .toon-v6-intro .toon-v6-animated-arm {top:-62px;mask-image:linear-gradient(to bottom,#000 0%,#000 77%,rgba(0,0,0,.9) 86%,transparent 100%);}
+}
+@media (max-width: 620px) {
+  .hero-human .toon-v6-intro .toon-v6-base,
+  .hero-human .toon-v6-intro .toon-v6-animated-arm {top:-25px;mask-image:linear-gradient(to bottom,#000 0%,#000 77%,transparent 100%);}
+}
+/* One quiet contextual cue; no duplicate 'verified' bubbles. */
+.hero-human .toon-v6-intro .toon-v6-completion {display:none}
+.hero-human .toon-v6-intro .verification-chip-left {
+  top: 28%;
+  left: auto;
+  right: 0;
+  z-index: 7;
+  background: rgba(9,45,81,.73);
+  color: #f1f9ff;
+  border: 1px solid rgba(145,215,252,.25);
+  box-shadow: 0 10px 28px rgba(0,20,40,.12);
+  border-radius: 18px;
+  backdrop-filter: blur(12px);
+  padding: 9px 12px;
+}
+.hero-human .toon-v6-intro .verification-chip-left small {color: #bad5ed}
+.hero-human .toon-v6-intro[data-scene="success"] .verification-chip-left {opacity:0; transform:translateY(-9px);}
+.hero-human .toon-v6-intro .story-success-card {
+  top: 28%;
+  bottom: auto;
+  right: 0;
+  border-radius: 18px;
+  padding: 11px 14px;
+}
+.hero-human .toon-v6-intro .story-stage-sub,
+.hero-human .toon-v6-intro .story-stage-progress {display:none}
+.hero-human .toon-v6-intro .story-stage-nav {margin-top:12px}
+@media(max-width:620px){
+  .hero-human .toon-v6-intro .verification-chip-left {top:23%;right:2%;padding:7px 9px}
+  .hero-human .toon-v6-intro .story-success-card {top:25%;right:2%;bottom:auto;}
+}
