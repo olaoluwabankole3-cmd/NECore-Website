@@ -10,8 +10,10 @@
   if(!story||!original||typeof original.animate!=='function')return;
   const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
   if(motion.matches||document.visibilityState==='hidden'||window.scrollY>8||location.hash)return;
+  // ?intro=1 allows visual QA without clearing the tab's session state.
+  const forceReplay=new URLSearchParams(window.location.search).get('intro')==='1';
   try{
-    if(window.sessionStorage.getItem('necore_hero_entrance_v1')==='seen')return;
+    if(!forceReplay&&window.sessionStorage.getItem('necore_hero_entrance_v1')==='seen')return;
   }catch{ /* Private mode without storage must still work. */ }
 
   const rect=original.getBoundingClientRect();
