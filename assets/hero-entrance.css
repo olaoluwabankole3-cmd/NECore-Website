@@ -1,0 +1,76 @@
+/* Opening illustration: a single art-directed transition, not a modal.
+   The original hero stays in flow; its illustration is cloned only for the
+   motion sequence. No labels, cards, loading meters or extra headlines. */
+.necore-intro-curtain{
+  position:fixed;inset:0;z-index:600;background:
+  radial-gradient(ellipse 55% 45% at 50% 46%,rgba(34,99,156,.27),transparent 84%),
+  #071d35;
+  pointer-events:auto;will-change:opacity;touch-action:manipulation;
+}
+.necore-intro-art{
+  position:fixed;z-index:601;pointer-events:none;overflow:visible;
+  transform-origin:center;will-change:left,top,width,height,opacity;
+  background:transparent!important;border:0!important;
+  box-shadow:none!important;border-radius:0!important;
+  isolation:isolate;
+}
+.necore-intro-art .toon-stage-v6{
+  position:absolute!important;inset:0!important;
+  width:100%!important;height:100%!important;
+  background:transparent!important;border:0!important;
+  border-radius:0!important;box-shadow:none!important;
+  overflow:visible!important;
+}
+.necore-intro-art .toon-stage-v6::before,
+.necore-intro-art .toon-v6-bottom-fade,
+.necore-intro-art .toon-v6-completion{display:none!important}
+.necore-intro-art .toon-v6-base,
+.necore-intro-art .toon-v6-animated-arm{
+  position:absolute!important;inset:0!important;
+  display:block;width:100%!important;height:100%!important;
+  object-fit:fill!important;object-position:center!important;
+  pointer-events:none;
+}
+.necore-intro-art .toon-v6-base{
+  mask-image:radial-gradient(ellipse 56% 81% at 38% 50%,#000 49%,rgba(0,0,0,.92) 61%,transparent 97%);
+  -webkit-mask-image:radial-gradient(ellipse 56% 81% at 38% 50%,#000 49%,rgba(0,0,0,.92) 61%,transparent 97%);
+}
+.necore-intro-art .toon-v6-animated-arm{
+  transform-origin:74% 93%;
+  mask-image:radial-gradient(ellipse 57% 77% at 79% 72%,#000 45%,rgba(0,0,0,.98) 69%,transparent 99%);
+  -webkit-mask-image:radial-gradient(ellipse 57% 77% at 79% 72%,#000 45%,rgba(0,0,0,.98) 69%,transparent 99%);
+}
+.necore-intro-art .toon-v6-scan-frame{
+  left:26%!important;top:14%!important;width:33%!important;height:48%!important;
+  z-index:4;border-width:2px;border-radius:24px;
+  box-shadow:0 0 24px rgba(97,204,255,.4);
+}
+html.necore-intro-running body{overflow:hidden!important}
+html.necore-intro-running .hero-human .verify-story{opacity:0!important}
+html.necore-intro-running .announcement,
+html.necore-intro-running .site-header,
+html.necore-intro-running .hero-human .hero-copy,
+html.necore-intro-running .hero-human .hero-bottom-line{
+  opacity:0!important;transform:translateY(17px)!important;
+}
+html.necore-intro-running.necore-intro-reveal .announcement,
+html.necore-intro-running.necore-intro-reveal .site-header,
+html.necore-intro-running.necore-intro-reveal .hero-human .hero-copy,
+html.necore-intro-running.necore-intro-reveal .hero-human .hero-bottom-line{
+  opacity:1!important;transform:none!important;
+  transition:opacity .95s ease .15s,transform 1.05s cubic-bezier(.16,1,.3,1) .15s;
+}
+@media(max-width:620px){
+  .necore-intro-art .toon-v6-scan-frame{border-radius:17px}
+}
+@media(prefers-reduced-motion:reduce){
+  .necore-intro-curtain,.necore-intro-art{display:none!important}
+  html.necore-intro-running body{overflow:auto!important}
+  html.necore-intro-running .hero-human .verify-story,
+  html.necore-intro-running .announcement,
+  html.necore-intro-running .site-header,
+  html.necore-intro-running .hero-human .hero-copy,
+  html.necore-intro-running .hero-human .hero-bottom-line{
+    opacity:1!important;transform:none!important;
+  }
+}
