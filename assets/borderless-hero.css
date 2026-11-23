@@ -167,3 +167,39 @@
   .hero-human .toon-v6-intro .verification-chip-left {top:23%;right:2%;padding:7px 9px}
   .hero-human .toon-v6-intro .story-success-card {top:25%;right:2%;bottom:auto;}
 }
+
+/* Mobile art direction: clear editorial hierarchy and one hero focal point. */
+@media(max-width:620px){
+  .hero-human .hero-human-inner{padding-top:32px;padding-bottom:68px;gap:13px}
+  .hero-human .hero-copy{width:100%;max-width:100%;padding-top:0}
+  .hero-human .hero-copy .eyebrow{font-size:10px;letter-spacing:.075em;line-height:1.5}
+  .hero-human .hero-title{font-size:clamp(38px,10.6vw,48px);line-height:1.08;letter-spacing:-.053em;margin:17px 0 18px}
+  .hero-human .lead{font-size:15px;line-height:1.66;max-width:37ch}
+  .hero-human .hero-actions{margin-top:23px;gap:10px}
+  .hero-human .hero-actions .btn{min-height:51px;padding:13px 16px;border-radius:11px;font-size:13px}
+  .hero-human .hero-confidence{margin-top:19px;line-height:1.55}
+  .hero-human .hero-quiet-note{font-size:10px;line-height:1.45;margin-top:12px}
+  .hero-human .verify-story.toon-v6-intro{
+    width:100%;max-width:510px;
+    height:clamp(375px,110vw,440px);min-height:0;
+    margin:0 auto;
+  }
+  .hero-human .toon-v6-intro .verify-story-inner{inset:-2px -8px 72px}
+  .hero-human .toon-v6-intro .toon-v6-base,
+  .hero-human .toon-v6-intro .toon-v6-animated-arm{
+    top:-20px;left:-4%;width:108%;height:108%;object-position:center bottom;
+  }
+  .hero-human .toon-v6-intro .verify-story-footer{left:5%;right:5%;bottom:4px}
+  .hero-human .toon-v6-intro .story-stage-name{font-size:14px;line-height:1.28}
+  .hero-human .toon-v6-intro .story-stage-top{letter-spacing:.07em}
+  .hero-human .toon-v6-intro .story-stage-nav{margin-top:10px}
+  .hero-human .toon-v6-intro .verification-chip-left{right:4%;top:19%}
+  .hero-human .toon-v6-intro .story-success-card{right:4%;top:20%}
+  .hero-human .hero-bottom-line{display:none}
+  .hero-human .hero-matrix{opacity:.12}
+  .hero-human .hero-aurora{opacity:.35}
+}
+@media(max-width:350px){
+  .hero-human .hero-title{font-size:36px}
+  .hero-human .verify-story.toon-v6-intro{height:365px}
+}
