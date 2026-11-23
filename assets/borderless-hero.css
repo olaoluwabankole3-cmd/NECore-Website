@@ -255,3 +255,32 @@
   .hero-human .toon-v6-intro .story-stage-name{font-size:13px}
   .hero-human .toon-v6-intro .story-stage-nav{margin-top:6px}
 }
+
+
+/* Final hero refinement: the graphic is a character, never a rectangular card.
+   The desktop artboard is feathered into the existing sapphire hero; the
+   geometric face-scan is an intentional part of the animation. */
+@media(min-width:621px){
+  .hero-human .verify-story.toon-v6-intro,
+  .hero-human .toon-v6-intro .toon-visual,
+  .hero-human .toon-v6-intro .toon-stage-v6{
+    border:0!important;border-radius:0!important;
+    outline:0!important;box-shadow:none!important;background:transparent!important;
+  }
+  .hero-human .toon-v6-intro .toon-stage-v6{
+    -webkit-mask-image:radial-gradient(ellipse 72% 86% at 49% 45%,#000 39%,rgba(0,0,0,.99) 51%,rgba(0,0,0,.91) 64%,rgba(0,0,0,.47) 76%,transparent 92%)!important;
+    mask-image:radial-gradient(ellipse 72% 86% at 49% 45%,#000 39%,rgba(0,0,0,.99) 51%,rgba(0,0,0,.91) 64%,rgba(0,0,0,.47) 76%,transparent 92%)!important;
+  }
+  .hero-human .toon-v6-intro .toon-v6-base{
+    -webkit-mask-image:radial-gradient(ellipse 67% 91% at 43% 48%,#000 48%,rgba(0,0,0,.94) 62%,rgba(0,0,0,.48) 77%,transparent 94%)!important;
+    mask-image:radial-gradient(ellipse 67% 91% at 43% 48%,#000 48%,rgba(0,0,0,.94) 62%,rgba(0,0,0,.48) 77%,transparent 94%)!important;
+  }
+  .hero-human .toon-v6-intro .toon-v6-animated-arm{
+    -webkit-mask-image:radial-gradient(ellipse 67% 80% at 79% 73%,#000 42%,rgba(0,0,0,.97) 62%,transparent 95%)!important;
+    mask-image:radial-gradient(ellipse 67% 80% at 79% 73%,#000 42%,rgba(0,0,0,.97) 62%,transparent 95%)!important;
+  }
+}
+/* One purposeful face-scan visualization; no floating status cards or labels. */
+.hero-human .toon-v6-intro .verification-chip-left,
+.hero-human .toon-v6-intro .verification-chip-right,
+.hero-human .toon-v6-intro .story-success-card{display:none!important}
