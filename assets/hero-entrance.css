@@ -85,3 +85,30 @@ html.necore-intro-running.necore-intro-handoff .hero-human .verify-story{
     opacity:1!important;transform:none!important;
   }
 }
+
+/* Final landing uses the same image mattes in both the moving artwork and
+   the destination stage. Matching silhouettes prevents a last-frame pop. */
+@media(min-width:621px){
+  .necore-intro-art .toon-v6-base{
+    -webkit-mask-image:radial-gradient(ellipse 67% 91% at 43% 48%,#000 48%,rgba(0,0,0,.94) 62%,rgba(0,0,0,.48) 77%,transparent 94%);
+    mask-image:radial-gradient(ellipse 67% 91% at 43% 48%,#000 48%,rgba(0,0,0,.94) 62%,rgba(0,0,0,.48) 77%,transparent 94%);
+  }
+  .necore-intro-art .toon-v6-animated-arm{
+    -webkit-mask-image:radial-gradient(ellipse 67% 80% at 79% 73%,#000 42%,rgba(0,0,0,.97) 62%,transparent 95%);
+    mask-image:radial-gradient(ellipse 67% 80% at 79% 73%,#000 42%,rgba(0,0,0,.97) 62%,transparent 95%);
+  }
+}
+@media(max-width:620px){
+  .necore-intro-art .toon-stage-v6{
+    -webkit-mask-image:none;
+    mask-image:none;
+  }
+  .necore-intro-art .toon-v6-base{
+    -webkit-mask-image:radial-gradient(ellipse 55% 79% at 38% 50%,#000 48%,rgba(0,0,0,.93) 61%,transparent 97%);
+    mask-image:radial-gradient(ellipse 55% 79% at 38% 50%,#000 48%,rgba(0,0,0,.93) 61%,transparent 97%);
+  }
+  .necore-intro-art .toon-v6-animated-arm{
+    -webkit-mask-image:radial-gradient(ellipse 56% 77% at 80% 72%,#000 45%,rgba(0,0,0,.98) 68%,transparent 99%);
+    mask-image:radial-gradient(ellipse 56% 77% at 80% 72%,#000 45%,rgba(0,0,0,.98) 68%,transparent 99%);
+  }
+}
