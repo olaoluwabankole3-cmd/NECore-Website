@@ -143,6 +143,7 @@ body{overflow-x:clip}
 @keyframes dashboardMobile{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.motion-ready .reveal:not(.show){opacity:1;transform:none}.hero.cinematic .visual-shell,.hero.cinematic .float-card,.hero.cinematic .hero-graphic{animation:none;transform:none}.trust-marquee-track{animation:none}.experience-interface .signal-center,.experience-interface .signal-ring,.experience-interface .signal-satellite{animation:none}.hero.cinematic .hero-graphic{transform:none}}
 
+.nav-links .mobile-menu-cta{display:none}
 /* NECore editorial refinement · mobile shell and content rhythm.
    Keep the client-approved Sapphire Veil palette and product narrative.
    This layer is intentionally narrow: no desktop redesign. */
