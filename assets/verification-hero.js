@@ -45,7 +45,7 @@
   });
   document.addEventListener('necore:intro-complete',()=>{
     if(reduce.matches)return;
-    stop();paused=false;current=1;play();
+    stop();paused=false;current=2;play();
   });
   if(reduce.matches){paused=true;story.classList.add('is-entered');paint(2);toggle?.setAttribute('hidden','hidden');}
   else {paint(0);requestAnimationFrame(()=>requestAnimationFrame(()=>{story.classList.add('is-entered');timer=setTimeout(next,stages[0].duration)}));}
