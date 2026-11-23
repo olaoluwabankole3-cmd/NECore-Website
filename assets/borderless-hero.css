@@ -203,3 +203,55 @@
   .hero-human .hero-title{font-size:36px}
   .hero-human .verify-story.toon-v6-intro{height:365px}
 }
+
+
+/* Mobile V6 illustration — no stage frame, independently framed face scan.
+   The artwork and phone remain separate layers; no floating cards are added. */
+@media(max-width:620px){
+  .hero-human .verify-story.toon-v6-intro,
+  .hero-human .toon-v6-intro .toon-visual,
+  .hero-human .toon-v6-intro .toon-stage-v6{
+    border:0!important;border-radius:0!important;outline:0!important;
+    box-shadow:none!important;background:transparent!important;
+  }
+  .hero-human .toon-v6-intro .verify-story-inner{inset:2px -6px 58px}
+  .hero-human .toon-v6-intro .toon-stage-v6{
+    position:absolute!important;inset:auto!important;
+    top:13px!important;left:50%!important;
+    width:calc(100% + 30px)!important;height:auto!important;
+    aspect-ratio:670 / 460;transform:translateX(-50%);
+    overflow:visible!important;
+  }
+  .hero-human .toon-v6-intro .toon-stage-v6::before{display:none}
+  .hero-human .toon-v6-intro .toon-v6-base,
+  .hero-human .toon-v6-intro .toon-v6-animated-arm{
+    width:100%!important;height:100%!important;
+    inset:0!important;object-fit:fill!important;object-position:center!important;
+    border:0;border-radius:0;
+  }
+  /* A feathered crop removes the baked-in upper-right face-capture label
+     from the base illustration while retaining the character's portrait. */
+  .hero-human .toon-v6-intro .toon-v6-base{
+    mask-image:radial-gradient(ellipse 55% 79% at 38% 50%,#000 48%,rgba(0,0,0,.93) 61%,transparent 97%)!important;
+    -webkit-mask-image:radial-gradient(ellipse 55% 79% at 38% 50%,#000 48%,rgba(0,0,0,.93) 61%,transparent 97%)!important;
+  }
+  .hero-human .toon-v6-intro .toon-v6-animated-arm{
+    mask-image:radial-gradient(ellipse 56% 77% at 80% 72%,#000 45%,rgba(0,0,0,.98) 68%,transparent 99%)!important;
+    -webkit-mask-image:radial-gradient(ellipse 56% 77% at 80% 72%,#000 45%,rgba(0,0,0,.98) 68%,transparent 99%)!important;
+    transform-origin:74% 93%;
+  }
+  /* Match the portrait's actual facial landmarks instead of the screen box.
+     The preserved 670:460 artboard keeps alignment consistent on phones. */
+  .hero-human .toon-v6-intro .toon-v6-scan-frame{
+    left:26%!important;top:14%!important;
+    width:33%!important;height:48%!important;
+    border-width:2px;border-radius:24px;
+    box-shadow:0 0 20px rgba(90,200,255,.25);
+  }
+  .hero-human .toon-v6-intro .verification-chip-left,
+  .hero-human .toon-v6-intro .verification-chip-right,
+  .hero-human .toon-v6-intro .story-success-card{display:none!important}
+  .hero-human .toon-v6-intro .verify-story-footer{left:8%;right:8%;bottom:9px}
+  .hero-human .toon-v6-intro .story-stage-name{font-size:13px}
+  .hero-human .toon-v6-intro .story-stage-nav{margin-top:6px}
+}
