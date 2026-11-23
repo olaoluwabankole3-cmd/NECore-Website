@@ -2,8 +2,38 @@
   'use strict';
   document.getElementById('year')?.replaceChildren(document.createTextNode(String(new Date().getFullYear())));
   const toggle=document.querySelector('.mobile-toggle'),menu=document.querySelector('.nav-links');
-  toggle?.addEventListener('click',()=>{const open=!menu.classList.contains('open');menu.classList.toggle('open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation');toggle.textContent=open?'×':'☰'});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu?.classList.contains('open')){menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.textContent='☰'}});
+  // Make the primary conversion action reachable inside the mobile menu.
+  // It is hidden with that menu on desktop; no extra desktop CTA is introduced.
+  if(menu && !menu.querySelector('.mobile-menu-cta')){
+    const source=document.querySelector('.nav-actions > a.btn');
+    if(source){
+      const link=document.createElement('a');
+      link.href=source.getAttribute('href')||'contact.html';
+      link.className='mobile-menu-cta';
+      link.textContent='Request a demo';
+      menu.appendChild(link);
+    }
+  }
+  function setMobileMenu(open,focusToggle=false){
+    if(!menu||!toggle)return;
+    menu.classList.toggle('open',open);
+    document.body.classList.toggle('mobile-menu-open',open);
+    toggle.setAttribute('aria-expanded',String(open));
+    toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+    toggle.textContent=open?'×':'☰';
+    if(focusToggle)toggle.focus();
+  }
+  toggle?.addEventListener('click',()=>setMobileMenu(!menu.classList.contains('open')));
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&menu?.classList.contains('open'))setMobileMenu(false,true);
+  });
+  document.addEventListener('click',event=>{
+    if(menu?.classList.contains('open')&&!event.target.closest('.site-header'))setMobileMenu(false);
+  });
+  menu?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMobileMenu(false)));
+  window.addEventListener('resize',()=>{
+    if(window.innerWidth>900&&menu?.classList.contains('open'))setMobileMenu(false);
+  },{passive:true});
   if('IntersectionObserver' in window){const observer=new IntersectionObserver((entries,obs)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');obs.unobserve(entry.target)}})},{threshold:.09});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('show'));
   document.querySelectorAll('[data-copy-target]').forEach(btn=>btn.addEventListener('click',async()=>{const target=document.getElementById(btn.dataset.copyTarget);if(!target)return;const original=btn.textContent;try{await navigator.clipboard.writeText(target.textContent);btn.textContent='Copied';setTimeout(()=>btn.textContent=original,1900)}catch{btn.textContent='Select code to copy';setTimeout(()=>btn.textContent=original,2100)}}));
   const form=document.getElementById('contact-form');
