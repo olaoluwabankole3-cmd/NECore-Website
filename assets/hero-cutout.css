@@ -1,0 +1,73 @@
+/* Character isolation: source art contains a painted rectangular background.
+   These two contour mattes remove the actual background pixels, not just
+   the CSS frame. One 670:460 coordinate system for the hero and intro. */
+.hero-human .verify-story.toon-v6-intro,
+.hero-human .toon-v6-intro .toon-visual,
+.hero-human .toon-v6-intro .toon-stage-v6,
+.necore-intro-art,
+.necore-intro-art .toon-stage-v6{
+  background:transparent!important;border:0!important;outline:0!important;
+  box-shadow:none!important;border-radius:0!important;overflow:visible!important;
+  -webkit-mask-image:none!important;mask-image:none!important;
+}
+.hero-human .toon-v6-intro .toon-stage-v6::before,
+.necore-intro-art .toon-stage-v6::before,
+.hero-human .toon-v6-intro .toon-v6-bottom-fade,
+.necore-intro-art .toon-v6-bottom-fade,
+.hero-human .toon-v6-intro .toon-v6-completion,
+.necore-intro-art .toon-v6-completion,
+.hero-human .toon-v6-intro .verification-chip,
+.hero-human .toon-v6-intro .story-success-card{display:none!important}
+/* Preserve aspect ratio, ensuring the scan follows the same face landmarks
+   at every width and while the introductory artwork travels into position. */
+.hero-human .toon-v6-intro .toon-stage-v6{
+  position:absolute!important;inset:auto!important;
+  left:50%!important;top:48%!important;
+  width:100%!important;height:auto!important;aspect-ratio:670 / 460;
+  transform:translate(-50%,-50%)!important;
+}
+@media(max-width:620px){
+  .hero-human .toon-v6-intro .toon-stage-v6{
+    top:13px!important;width:calc(100% + 30px)!important;
+    transform:translateX(-50%)!important;
+  }
+}
+.hero-human .toon-v6-intro .toon-v6-base,
+.hero-human .toon-v6-intro .toon-v6-animated-arm,
+.necore-intro-art .toon-v6-base,
+.necore-intro-art .toon-v6-animated-arm{
+  position:absolute!important;inset:0!important;
+  width:100%!important;height:100%!important;
+  object-fit:fill!important;object-position:center!important;
+  -webkit-mask-size:100% 100%!important;mask-size:100% 100%!important;
+  -webkit-mask-position:center!important;mask-position:center!important;
+  -webkit-mask-repeat:no-repeat!important;mask-repeat:no-repeat!important;
+  border:0!important;border-radius:0!important;
+}
+.hero-human .toon-v6-intro .toon-v6-base,
+.necore-intro-art .toon-v6-base{
+  -webkit-mask-image:url("toon-person-matte.svg")!important;
+  mask-image:url("toon-person-matte.svg")!important;
+}
+.hero-human .toon-v6-intro .toon-v6-animated-arm,
+.necore-intro-art .toon-v6-animated-arm{
+  -webkit-mask-image:url("toon-hand-matte.svg")!important;
+  mask-image:url("toon-hand-matte.svg")!important;
+}
+.hero-human .toon-v6-intro .toon-v6-scan-frame,
+.necore-intro-art .toon-v6-scan-frame{
+  left:26%!important;top:14%!important;width:33%!important;height:48%!important;
+  border-width:2px;border-radius:clamp(14px,2vw,24px);
+}
+.necore-intro-art .toon-stage-v6{
+  position:absolute!important;inset:0!important;
+  width:100%!important;height:100%!important;
+}
+/* Keep the result legible without reinstating a floating card. */
+.hero-human .toon-v6-intro[data-scene="success"] .toon-v6-scan-frame,
+.necore-intro-art[data-scene="success"] .toon-v6-scan-frame{
+  opacity:1;border-color:#77ebc9;box-shadow:0 0 18px rgba(63,228,185,.28);
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-human .toon-v6-intro .toon-v6-scan-frame{opacity:0!important}
+}

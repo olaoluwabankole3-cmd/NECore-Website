@@ -167,3 +167,120 @@
   .hero-human .toon-v6-intro .verification-chip-left {top:23%;right:2%;padding:7px 9px}
   .hero-human .toon-v6-intro .story-success-card {top:25%;right:2%;bottom:auto;}
 }
+
+/* Mobile art direction: clear editorial hierarchy and one hero focal point. */
+@media(max-width:620px){
+  .hero-human .hero-human-inner{padding-top:32px;padding-bottom:68px;gap:13px}
+  .hero-human .hero-copy{width:100%;max-width:100%;padding-top:0}
+  .hero-human .hero-copy .eyebrow{font-size:10px;letter-spacing:.075em;line-height:1.5}
+  .hero-human .hero-title{font-size:clamp(38px,10.6vw,48px);line-height:1.08;letter-spacing:-.053em;margin:17px 0 18px}
+  .hero-human .lead{font-size:15px;line-height:1.66;max-width:37ch}
+  .hero-human .hero-actions{margin-top:23px;gap:10px}
+  .hero-human .hero-actions .btn{min-height:51px;padding:13px 16px;border-radius:11px;font-size:13px}
+  .hero-human .hero-confidence{margin-top:19px;line-height:1.55}
+  .hero-human .hero-quiet-note{font-size:10px;line-height:1.45;margin-top:12px}
+  .hero-human .verify-story.toon-v6-intro{
+    width:100%;max-width:510px;
+    height:clamp(375px,110vw,440px);min-height:0;
+    margin:0 auto;
+  }
+  .hero-human .toon-v6-intro .verify-story-inner{inset:-2px -8px 72px}
+  .hero-human .toon-v6-intro .toon-v6-base,
+  .hero-human .toon-v6-intro .toon-v6-animated-arm{
+    top:-20px;left:-4%;width:108%;height:108%;object-position:center bottom;
+  }
+  .hero-human .toon-v6-intro .verify-story-footer{left:5%;right:5%;bottom:4px}
+  .hero-human .toon-v6-intro .story-stage-name{font-size:14px;line-height:1.28}
+  .hero-human .toon-v6-intro .story-stage-top{letter-spacing:.07em}
+  .hero-human .toon-v6-intro .story-stage-nav{margin-top:10px}
+  .hero-human .toon-v6-intro .verification-chip-left{right:4%;top:19%}
+  .hero-human .toon-v6-intro .story-success-card{right:4%;top:20%}
+  .hero-human .hero-bottom-line{display:none}
+  .hero-human .hero-matrix{opacity:.12}
+  .hero-human .hero-aurora{opacity:.35}
+}
+@media(max-width:350px){
+  .hero-human .hero-title{font-size:36px}
+  .hero-human .verify-story.toon-v6-intro{height:365px}
+}
+
+
+/* Mobile V6 illustration — no stage frame, independently framed face scan.
+   The artwork and phone remain separate layers; no floating cards are added. */
+@media(max-width:620px){
+  .hero-human .verify-story.toon-v6-intro,
+  .hero-human .toon-v6-intro .toon-visual,
+  .hero-human .toon-v6-intro .toon-stage-v6{
+    border:0!important;border-radius:0!important;outline:0!important;
+    box-shadow:none!important;background:transparent!important;
+  }
+  .hero-human .toon-v6-intro .verify-story-inner{inset:2px -6px 58px}
+  .hero-human .toon-v6-intro .toon-stage-v6{
+    position:absolute!important;inset:auto!important;
+    top:13px!important;left:50%!important;
+    width:calc(100% + 30px)!important;height:auto!important;
+    aspect-ratio:670 / 460;transform:translateX(-50%);
+    overflow:visible!important;
+  }
+  .hero-human .toon-v6-intro .toon-stage-v6::before{display:none}
+  .hero-human .toon-v6-intro .toon-v6-base,
+  .hero-human .toon-v6-intro .toon-v6-animated-arm{
+    width:100%!important;height:100%!important;
+    inset:0!important;object-fit:fill!important;object-position:center!important;
+    border:0;border-radius:0;
+  }
+  /* A feathered crop removes the baked-in upper-right face-capture label
+     from the base illustration while retaining the character's portrait. */
+  .hero-human .toon-v6-intro .toon-v6-base{
+    mask-image:radial-gradient(ellipse 55% 79% at 38% 50%,#000 48%,rgba(0,0,0,.93) 61%,transparent 97%)!important;
+    -webkit-mask-image:radial-gradient(ellipse 55% 79% at 38% 50%,#000 48%,rgba(0,0,0,.93) 61%,transparent 97%)!important;
+  }
+  .hero-human .toon-v6-intro .toon-v6-animated-arm{
+    mask-image:radial-gradient(ellipse 56% 77% at 80% 72%,#000 45%,rgba(0,0,0,.98) 68%,transparent 99%)!important;
+    -webkit-mask-image:radial-gradient(ellipse 56% 77% at 80% 72%,#000 45%,rgba(0,0,0,.98) 68%,transparent 99%)!important;
+    transform-origin:74% 93%;
+  }
+  /* Match the portrait's actual facial landmarks instead of the screen box.
+     The preserved 670:460 artboard keeps alignment consistent on phones. */
+  .hero-human .toon-v6-intro .toon-v6-scan-frame{
+    left:26%!important;top:14%!important;
+    width:33%!important;height:48%!important;
+    border-width:2px;border-radius:24px;
+    box-shadow:0 0 20px rgba(90,200,255,.25);
+  }
+  .hero-human .toon-v6-intro .verification-chip-left,
+  .hero-human .toon-v6-intro .verification-chip-right,
+  .hero-human .toon-v6-intro .story-success-card{display:none!important}
+  .hero-human .toon-v6-intro .verify-story-footer{left:8%;right:8%;bottom:9px}
+  .hero-human .toon-v6-intro .story-stage-name{font-size:13px}
+  .hero-human .toon-v6-intro .story-stage-nav{margin-top:6px}
+}
+
+
+/* Final hero refinement: the graphic is a character, never a rectangular card.
+   The desktop artboard is feathered into the existing sapphire hero; the
+   geometric face-scan is an intentional part of the animation. */
+@media(min-width:621px){
+  .hero-human .verify-story.toon-v6-intro,
+  .hero-human .toon-v6-intro .toon-visual,
+  .hero-human .toon-v6-intro .toon-stage-v6{
+    border:0!important;border-radius:0!important;
+    outline:0!important;box-shadow:none!important;background:transparent!important;
+  }
+  .hero-human .toon-v6-intro .toon-stage-v6{
+    -webkit-mask-image:radial-gradient(ellipse 72% 86% at 49% 45%,#000 39%,rgba(0,0,0,.99) 51%,rgba(0,0,0,.91) 64%,rgba(0,0,0,.47) 76%,transparent 92%)!important;
+    mask-image:radial-gradient(ellipse 72% 86% at 49% 45%,#000 39%,rgba(0,0,0,.99) 51%,rgba(0,0,0,.91) 64%,rgba(0,0,0,.47) 76%,transparent 92%)!important;
+  }
+  .hero-human .toon-v6-intro .toon-v6-base{
+    -webkit-mask-image:radial-gradient(ellipse 67% 91% at 43% 48%,#000 48%,rgba(0,0,0,.94) 62%,rgba(0,0,0,.48) 77%,transparent 94%)!important;
+    mask-image:radial-gradient(ellipse 67% 91% at 43% 48%,#000 48%,rgba(0,0,0,.94) 62%,rgba(0,0,0,.48) 77%,transparent 94%)!important;
+  }
+  .hero-human .toon-v6-intro .toon-v6-animated-arm{
+    -webkit-mask-image:radial-gradient(ellipse 67% 80% at 79% 73%,#000 42%,rgba(0,0,0,.97) 62%,transparent 95%)!important;
+    mask-image:radial-gradient(ellipse 67% 80% at 79% 73%,#000 42%,rgba(0,0,0,.97) 62%,transparent 95%)!important;
+  }
+}
+/* One purposeful face-scan visualization; no floating status cards or labels. */
+.hero-human .toon-v6-intro .verification-chip-left,
+.hero-human .toon-v6-intro .verification-chip-right,
+.hero-human .toon-v6-intro .story-success-card{display:none!important}

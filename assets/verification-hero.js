@@ -39,6 +39,14 @@
   toggle?.addEventListener('click',()=>paused?play():pause());
   document.addEventListener('visibilitychange',()=>{if(document.hidden){stop()}else if(!paused){play()}});
   reduce.addEventListener?.('change',()=>{stop();if(reduce.matches){paused=true;story.classList.add('is-entered');paint(2);toggle?.setAttribute('hidden','hidden')}else{paused=false;toggle?.removeAttribute('hidden');current=0;play()}});
+  // Keep the stage timeline synchronized with the one-time art-only entrance.
+  document.addEventListener('necore:intro-start',()=>{
+    stop();paused=true;paint(0);
+  });
+  document.addEventListener('necore:intro-complete',()=>{
+    if(reduce.matches)return;
+    stop();paused=false;current=2;play();
+  });
   if(reduce.matches){paused=true;story.classList.add('is-entered');paint(2);toggle?.setAttribute('hidden','hidden');}
   else {paint(0);requestAnimationFrame(()=>requestAnimationFrame(()=>{story.classList.add('is-entered');timer=setTimeout(next,stages[0].duration)}));}
 })();
