@@ -11,7 +11,9 @@
   const toggle=story.querySelector('[data-story-toggle]');
   const dots=[...story.querySelectorAll('.story-stage-pill')];
   const nodes={number:story.querySelector('[data-story-number]'),tag:story.querySelector('[data-story-tag]'),title:story.querySelector('[data-story-title]'),subtitle:story.querySelector('[data-story-subtitle]')};
-  let timer=null,current=0,paused=false;
+  let timer=null,current=0,paused=false,remaining=stages[0].duration,deadline=0,frozen=[];
+  function scheduleNext(delay){remaining=delay;deadline=performance.now()+delay;timer=setTimeout(next,delay)}
+  function releaseFrozen(){for(const a of frozen){try{a.play()}catch{}}frozen=[];story.classList.remove('is-paused')}
   function stop(){if(timer!==null)clearTimeout(timer);timer=null;story.classList.remove('is-playing')}
   function paint(index){
     current=index;
@@ -28,17 +30,18 @@
     if(!reduce.matches&&!paused){story.classList.add('is-playing');}
   }
   function next(){if(paused||reduce.matches||document.hidden)return;let i=(current+1)%stages.length;
-    if(i===0){story.classList.remove('is-entered');paint(0);timer=setTimeout(()=>{story.classList.add('is-entered');timer=setTimeout(next,stages[0].duration)},180);return;}
-    paint(i);timer=setTimeout(next,stages[i].duration);
+    if(i===0){story.classList.remove('is-entered');paint(0);timer=setTimeout(()=>{story.classList.add('is-entered');scheduleNext(stages[0].duration)},180);deadline=performance.now()+180;return;}
+    paint(i);scheduleNext(stages[i].duration);
   }
-  function play(){stop();paused=false;toggle?.setAttribute('aria-pressed','false');if(toggle)toggle.innerHTML='<span aria-hidden="true">Ⅱ</span> Pause';paint(current);
+  function play(){stop();releaseFrozen();paused=false;toggle?.setAttribute('aria-pressed','false');toggle?.setAttribute('aria-label','Pause illustration animation');if(toggle)toggle.innerHTML='<span aria-hidden="true">Ⅱ</span> Pause';paint(current);
     if(!story.classList.contains('is-entered'))requestAnimationFrame(()=>story.classList.add('is-entered'));
-    if(!reduce.matches&&!document.hidden)timer=setTimeout(next,stages[current].duration);
+    if(!reduce.matches&&!document.hidden)scheduleNext(stages[current].duration);
   }
-  function pause(){paused=true;stop();toggle?.setAttribute('aria-pressed','true');if(toggle)toggle.innerHTML='<span aria-hidden="true">▶</span> Play'}
-  toggle?.addEventListener('click',()=>paused?play():pause());
-  document.addEventListener('visibilitychange',()=>{if(document.hidden){stop()}else if(!paused){play()}});
-  reduce.addEventListener?.('change',()=>{stop();if(reduce.matches){paused=true;story.classList.add('is-entered');paint(2);toggle?.setAttribute('hidden','hidden')}else{paused=false;toggle?.removeAttribute('hidden');current=0;play()}});
+  function pause(){paused=true;remaining=Math.max(0,deadline-performance.now());if(timer!==null)clearTimeout(timer);timer=null;frozen=(story.getAnimations?.({subtree:true})||[]).filter(a=>a.playState==='running');for(const a of frozen){try{a.pause()}catch{}}story.classList.add('is-paused');toggle?.setAttribute('aria-pressed','true');toggle?.setAttribute('aria-label','Play illustration animation');if(toggle)toggle.innerHTML='<span aria-hidden="true">▶</span> Play'}
+  function resume(){paused=false;releaseFrozen();story.classList.add('is-entered');toggle?.setAttribute('aria-pressed','false');toggle?.setAttribute('aria-label','Pause illustration animation');if(toggle)toggle.innerHTML='<span aria-hidden="true">Ⅱ</span> Pause';if(!reduce.matches&&!document.hidden)scheduleNext(Math.max(0,remaining))}
+  toggle?.addEventListener('click',()=>paused?resume():pause());
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){if(!paused)stop()}else if(!paused){play()}});
+  reduce.addEventListener?.('change',()=>{stop();releaseFrozen();if(reduce.matches){paused=true;story.classList.add('is-entered');paint(2);toggle?.setAttribute('hidden','hidden')}else{paused=false;toggle?.removeAttribute('hidden');current=0;play()}});
   // Keep the stage timeline synchronized with the one-time art-only entrance.
   document.addEventListener('necore:intro-start',()=>{
     stop();paused=true;paint(0);
@@ -48,5 +51,5 @@
     stop();paused=false;current=2;play();
   });
   if(reduce.matches){paused=true;story.classList.add('is-entered');paint(2);toggle?.setAttribute('hidden','hidden');}
-  else {paint(0);requestAnimationFrame(()=>requestAnimationFrame(()=>{story.classList.add('is-entered');timer=setTimeout(next,stages[0].duration)}));}
+  else {paint(0);requestAnimationFrame(()=>requestAnimationFrame(()=>{story.classList.add('is-entered');scheduleNext(stages[0].duration)}));}
 })();
