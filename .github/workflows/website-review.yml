@@ -53,3 +53,17 @@ jobs:
               raise SystemExit('\n'.join(errors))
           print(f'Validated asset references in {len(pages)} HTML pages.')
           PY
+
+  portrait-matte-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install local image processing dependencies
+        run: python3 -m pip install --disable-pip-version-check Pillow numpy opencv-python-headless
+      - name: Generate and inspect portrait alpha matte
+        run: python3 tools/refine-hero-matte.py
