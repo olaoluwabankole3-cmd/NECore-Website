@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 670 460" width="670" height="460">
+<!-- Independently animated hand and phone silhouette, matched to the same artboard. -->
+<defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset=".91" stop-color="white"/><stop offset="1" stop-color="white" stop-opacity=".75"/></linearGradient><filter id="edge" x="-.03" y="-.03" width="1.06" height="1.06"><feGaussianBlur stdDeviation=".65"/></filter></defs>
+<path fill="url(#fade)" filter="url(#edge)" d="M 462 459 L 454 436 L 453 423 C 446 421 442 415 444 408 C 440 404 440 396 445 392 C 448 389 453 390 458 391 L 462 380 C 455 378 455 370 459 365 C 462 362 467 361 471 361 L 507 260 C 513 246 521 242 535 244 L 578 250 C 591 252 596 259 592 271 L 568 339 C 571 346 571 355 568 365 L 565 376 C 570 386 569 393 564 403 C 564 411 557 422 550 432 L 538 459 Z"/>
+</svg>
