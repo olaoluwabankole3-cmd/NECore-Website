@@ -47,7 +47,9 @@
   });
 
   document.documentElement.classList.add('necore-intro-running');
-  document.body.append(curtain,art);
+  const skip=document.createElement('button');
+  skip.type='button';skip.className='necore-intro-skip';skip.textContent='Skip intro';
+  document.body.append(curtain,art,skip);
   document.dispatchEvent(new Event('necore:intro-start'));
 
   let ended=false;
@@ -60,6 +62,7 @@
     document.removeEventListener('keydown',onKey);
     document.removeEventListener('visibilitychange',onVisibility);
     curtain.removeEventListener('click',finish);
+    skip.removeEventListener('click',onSkip);
     window.removeEventListener('resize',finish);
     window.removeEventListener('wheel',finish);
   };
@@ -71,14 +74,17 @@
     removeListeners();
     curtain.remove();
     art.remove();
+    skip.remove();
     document.documentElement.classList.remove('necore-intro-running','necore-intro-reveal','necore-intro-handoff');
     document.dispatchEvent(new Event('necore:intro-complete'));
   }
-  function onKey(e){if(e.key==='Escape'||e.key==='Tab')finish()}
+  function onSkip(){finish();const main=document.getElementById('main');if(main){main.setAttribute('tabindex','-1');main.focus({preventScroll:true})}}
+  function onKey(e){if(e.key==='Escape'){e.preventDefault();onSkip()}else if(e.key==='Tab'){e.preventDefault();skip.focus()}}
   function onVisibility(){if(document.hidden)finish()}
   document.addEventListener('keydown',onKey);
   document.addEventListener('visibilitychange',onVisibility);
   curtain.addEventListener('click',finish);
+  skip.addEventListener('click',onSkip);
   window.addEventListener('resize',finish,{passive:true});
   window.addEventListener('wheel',finish,{passive:true});
 

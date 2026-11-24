@@ -46,7 +46,7 @@ jobs:
                   if not (root/path).is_file():
                       errors.append(f'{page}: missing {path}')
           homepage=(root/'index.html').read_text()
-          for path in ('assets/hero-entrance.js','assets/hero-entrance.css','assets/toon-base-clean-v6.webp'):
+          for path in ('assets/hero-entrance.js','assets/hero-motion.css','assets/toon-base-clean-v6.webp'):
               if path not in homepage:
                   errors.append(f'Homepage does not reference {path}')
           if errors:

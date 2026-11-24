@@ -32,7 +32,7 @@
   });
   menu?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMobileMenu(false)));
   window.addEventListener('resize',()=>{
-    if(window.innerWidth>900&&menu?.classList.contains('open'))setMobileMenu(false);
+    if(window.innerWidth>1100&&menu?.classList.contains('open'))setMobileMenu(false);
   },{passive:true});
   if('IntersectionObserver' in window){const observer=new IntersectionObserver((entries,obs)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');obs.unobserve(entry.target)}})},{threshold:.09});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('show'));
   document.querySelectorAll('[data-copy-target]').forEach(btn=>btn.addEventListener('click',async()=>{const target=document.getElementById(btn.dataset.copyTarget);if(!target)return;const original=btn.textContent;try{await navigator.clipboard.writeText(target.textContent);btn.textContent='Copied';setTimeout(()=>btn.textContent=original,1900)}catch{btn.textContent='Select code to copy';setTimeout(()=>btn.textContent=original,2100)}}));
