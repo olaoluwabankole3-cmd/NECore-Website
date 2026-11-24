@@ -6,6 +6,8 @@ on:
       - '**.html'
       - 'assets/**'
       - 'api/**'
+      - 'tests/**'
+      - 'package.json'
       - '.github/workflows/website-review.yml'
   push:
     branches: [main]
@@ -13,6 +15,8 @@ on:
       - '**.html'
       - 'assets/**'
       - 'api/**'
+      - 'tests/**'
+      - 'package.json'
       - '.github/workflows/website-review.yml'
 
 jobs:
@@ -30,6 +34,8 @@ jobs:
           node --check assets/verification-hero.js
           node --check assets/hero-entrance.js
           node --check api/contact.js
+      - name: Test disabled contact endpoint
+        run: npm test
       - name: Validate local image, script and stylesheet references
         run: |
           python3 - <<'PY'
@@ -41,8 +47,8 @@ jobs:
           for page in pages:
               html=page.read_text()
               for url in re.findall(r'(?:src|href)=["\']([^"\']+)["\']',html):
-                  if not (url.startswith('assets/') or url.startswith('api/')):continue
-                  path=url.split('?',1)[0].split('#',1)[0]
+                  if not (url.lstrip('/').startswith('assets/') or url.lstrip('/').startswith('api/')):continue
+                  path=url.split('?',1)[0].split('#',1)[0].lstrip('/')
                   if not (root/path).is_file():
                       errors.append(f'{page}: missing {path}')
           homepage=(root/'index.html').read_text()
