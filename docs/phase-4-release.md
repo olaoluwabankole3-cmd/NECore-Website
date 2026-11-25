@@ -1,0 +1,7 @@
+# Phase 4 release quality
+
+- Canonical origin https://necore.dev, eight public pages, unique metadata, social URLs, Organization/WebSite and WebPage schema without unverified company claims. Search engine submission/indexing and social crawler rendering require production verification. Existing approved logo is used as the social preview; dedicated wide preview artwork remains optional.
+- Emergency intro stays available for recovery but is noindex and excluded from sitemap. Unapproved legal pages are not published.
+- Contact stays disabled: preserve the original form in Git history, public page does not collect details, server requires explicit opt-in and approved delivery settings. Formal privacy/terms review and abuse controls are required before activation.
+- Accessibility: visible keyboard focus, skip destination, resilient navigation without JS, copy feedback, motion preferences, pause/skip controls; automated scans do not certify WCAG conformance. Cross-browser smoke and Lighthouse lab results require CI confirmation and real-device testing. Do not claim a performance score without the report. Decorative ticker now static to remove uncontrolled continuous motion; approved hero retained.
+- Production check: verify canonical URLs, /robots.txt, /sitemap.xml, branded missing page with HTTP 404, noindex backup, contact returns 503, domain and deployed SHA; no real personal data in tests.

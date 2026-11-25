@@ -1,5 +1,7 @@
 (function () {
   'use strict';
+  document.documentElement.classList.add('js-ready');
+  document.querySelector('.skip-link')?.addEventListener('click',()=>document.querySelector('main')?.focus({preventScroll:true}));
   document.getElementById('year')?.replaceChildren(document.createTextNode(String(new Date().getFullYear())));
   const toggle=document.querySelector('.mobile-toggle'),menu=document.querySelector('.nav-links');
   // Make the primary conversion action reachable inside the mobile menu.
@@ -35,7 +37,7 @@
     if(window.innerWidth>1100&&menu?.classList.contains('open'))setMobileMenu(false);
   },{passive:true});
   if('IntersectionObserver' in window){const observer=new IntersectionObserver((entries,obs)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');obs.unobserve(entry.target)}})},{threshold:.09});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('show'));
-  document.querySelectorAll('[data-copy-target]').forEach(btn=>btn.addEventListener('click',async()=>{const target=document.getElementById(btn.dataset.copyTarget);if(!target)return;const original=btn.textContent;try{await navigator.clipboard.writeText(target.textContent);btn.textContent='Copied';setTimeout(()=>btn.textContent=original,1900)}catch{btn.textContent='Select code to copy';setTimeout(()=>btn.textContent=original,2100)}}));
+  document.querySelectorAll('[data-copy-target]').forEach(btn=>btn.addEventListener('click',async()=>{const target=document.getElementById(btn.dataset.copyTarget);if(!target)return;const original=btn.textContent;const report=message=>{let status=document.getElementById('copy-status');if(!status){status=document.createElement('div');status.id='copy-status';status.className='sr-only';status.setAttribute('role','status');document.body.appendChild(status)}status.textContent=message};try{await navigator.clipboard.writeText(target.textContent);btn.textContent='Copied';report('Code copied to clipboard.');setTimeout(()=>btn.textContent=original,1900)}catch{btn.textContent='Select code to copy';report('Copy unavailable. Select the code manually.');setTimeout(()=>btn.textContent=original,2100)}}));
   const form=document.getElementById('contact-form');
   if(form){form.addEventListener('submit',async e=>{e.preventDefault();if(!form.reportValidity())return;const btn=document.getElementById('sendBtn');const response=document.getElementById('form-response');const data=Object.fromEntries(new FormData(form).entries());btn.disabled=true;btn.textContent='Sending…';response.className='form-response';response.textContent='';try{const request=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),signal:AbortSignal.timeout(15000)});const body=await request.json().catch(()=>({error:'Unable to parse server response.'}));if(!request.ok)throw new Error(body.error||'Unable to send this enquiry.');response.classList.add('ok');response.textContent='Your enquiry was sent successfully. Thank you for contacting NECore.';form.reset()}catch(err){response.classList.add('error');response.textContent=String(err.message||'We could not send your request. Please try again later.')}finally{btn.disabled=false;btn.innerHTML='Send enquiry →'}})}
 
@@ -44,6 +46,7 @@
   if(!reducedMotion.matches){
     document.documentElement.classList.add('motion-ready');
   }
+  reducedMotion.addEventListener?.('change',()=>document.documentElement.classList.toggle('motion-ready',!reducedMotion.matches));
   const header = document.querySelector('.site-header');
   const syncHeader = () => header?.classList.toggle('scrolled', window.scrollY > 12);
   syncHeader();

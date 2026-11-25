@@ -7,7 +7,10 @@ on:
       - 'assets/**'
       - 'api/**'
       - 'tests/phase-2-browser.cjs'
-      - 'tests/phase-3-content.py'
+      - 'tests/**'
+      - 'robots.txt'
+      - 'sitemap.xml'
+      - 'vercel.json'
       - '.github/workflows/website-review.yml'
   push:
     branches: [main]
@@ -16,7 +19,10 @@ on:
       - 'assets/**'
       - 'api/**'
       - 'tests/phase-2-browser.cjs'
-      - 'tests/phase-3-content.py'
+      - 'tests/**'
+      - 'robots.txt'
+      - 'sitemap.xml'
+      - 'vercel.json'
       - '.github/workflows/website-review.yml'
 
 jobs:
@@ -36,6 +42,10 @@ jobs:
           node --check api/contact.js
       - name: Validate public contract examples and disclosures
         run: python3 tests/phase-3-content.py
+      - name: Validate SEO and disabled contact
+        run: |
+          python3 tests/phase-4-seo.py
+          node --test tests/contact-disabled.test.cjs
       - name: Validate local image, script and stylesheet references
         run: |
           python3 - <<'PY'
@@ -97,3 +107,74 @@ jobs:
           trap 'kill "$server" 2>/dev/null || true' EXIT
           for i in $(seq 1 20); do curl -fsS http://127.0.0.1:4173/index.html >/dev/null && break; sleep 1; done
           node tests/phase-2-browser.cjs
+
+  release-browser-qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install QA tools
+        run: |
+          npm install --no-save --package-lock=false --ignore-scripts playwright@1.56.1 axe-core@4.14.1
+          npx playwright install --with-deps ${{ matrix.browser }}
+      - name: Test keyboard access, layouts, routing and accessibility
+        env:
+          QA_BROWSER: ${{ matrix.browser }}
+        run: |
+          python3 tests/phase-4-server.py > /tmp/necore-phase4.log 2>&1 &
+          server=$!
+          trap 'kill "$server" 2>/dev/null || true' EXIT
+          for i in $(seq 1 20); do curl -fsS http://127.0.0.1:4173/ >/dev/null && break; sleep 1; done
+          node tests/phase-4-browser.cjs
+      - name: Retain accessibility report
+        if: always() && matrix.browser == 'chromium'
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase-4-accessibility
+          path: qa-results/axe.json
+          if-no-files-found: ignore
+
+  lighthouse-lab:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Lighthouse
+        run: npm install --no-save --package-lock=false --ignore-scripts lighthouse@12.8.2
+      - name: Measure representative public pages
+        run: |
+          python3 tests/phase-4-server.py > /tmp/necore-lighthouse.log 2>&1 &
+          server=$!
+          trap 'kill "$server" 2>/dev/null || true' EXIT
+          for i in $(seq 1 20); do curl -fsS http://127.0.0.1:4173/ >/dev/null && break; sleep 1; done
+          mkdir -p qa-results
+          for path in index products developers security; do
+            url="http://127.0.0.1:4173/$path.html"
+            npx --no-install lighthouse "$url" --chrome-flags="--headless --no-sandbox" --only-categories=performance,accessibility,best-practices,seo --output=json --output-path="qa-results/$path.json" --quiet
+          done
+          node -e 'for (const p of ["index","products","developers","security"]) {const r=require("./qa-results/"+p+".json"); console.log(p,JSON.stringify(Object.fromEntries(Object.entries(r.categories).map(([k,v])=>[k,Math.round(v.score*100)]))));}'
+      - name: Retain Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase-4-lighthouse
+          path: qa-results/*.json
+          if-no-files-found: ignore
