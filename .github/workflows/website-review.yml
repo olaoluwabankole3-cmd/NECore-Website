@@ -7,6 +7,7 @@ on:
       - 'assets/**'
       - 'api/**'
       - 'tests/phase-2-browser.cjs'
+      - 'tests/phase-3-content.py'
       - '.github/workflows/website-review.yml'
   push:
     branches: [main]
@@ -15,6 +16,7 @@ on:
       - 'assets/**'
       - 'api/**'
       - 'tests/phase-2-browser.cjs'
+      - 'tests/phase-3-content.py'
       - '.github/workflows/website-review.yml'
 
 jobs:
@@ -32,6 +34,8 @@ jobs:
           node --check assets/verification-hero.js
           node --check assets/hero-entrance.js
           node --check api/contact.js
+      - name: Validate public contract examples and disclosures
+        run: python3 tests/phase-3-content.py
       - name: Validate local image, script and stylesheet references
         run: |
           python3 - <<'PY'
