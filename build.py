@@ -34,7 +34,7 @@ def card(ic,title,text,href='products.html',link='Explore capability'):
 def header(active):
     links=''.join(f'<a href="{url}" class="{"active" if active==name else ""}" {"aria-current=page" if active==name else ""}>{name}</a>' for name,url in NAV)
     return f'''<a class="skip-link" href="#main">Skip to content</a>
-    <div class="announcement"><strong>NECore early access</strong> · Building the next layer of identity trust for institutions. <a href="contact.html">Explore pilot access</a></div>
+    <div class="announcement"><strong>NECore early access</strong> · Building the next layer of identity trust for institutions. <a class="platform-access" href="https://staging.necore.dev/console/">Staging sign in</a></div>
     <header class="site-header"><nav class="container nav-inner" aria-label="Main navigation">
     <a class="logo-link" href="index.html" aria-label="NECore home"><img src="assets/necore-logo.png" alt="NECore" width="160" height="47"></a>
     <div class="nav-links" id="mobile-menu">{links}<a href="pricing.html" class="{'active' if active=='Pricing' else ''}">Pricing</a></div>
