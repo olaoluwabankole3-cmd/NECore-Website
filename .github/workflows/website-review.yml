@@ -41,7 +41,9 @@ jobs:
           node --check assets/hero-entrance.js
           node --check api/contact.js
       - name: Validate public contract examples and disclosures
-        run: python3 tests/phase-3-content.py
+        run: |
+          python3 tests/phase-3-content.py
+          python3 tests/platform-access.py
       - name: Validate SEO and disabled contact
         run: |
           python3 tests/phase-4-seo.py
